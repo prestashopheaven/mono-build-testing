@@ -15,67 +15,6 @@
                     "prestashopheaven/build-testing-php": "1.0.0"
                 }
             }
-        },
-        {
-            "type": "path",
-            "url": "../../libraries/mono-build-standards/packages/*",
-            "options": {
-                "symlink": true,
-                "versions": {
-                    "prestashopheaven/build-coding-standard": "1.0.0",
-                    "prestashopheaven/build-typescript": "1.0.0"
-                }
-            }
-        },
-        {
-            "type": "path",
-            "url": "../../libraries/mono-build-tools/packages/*",
-            "options": {
-                "symlink": true,
-                "versions": {
-                    "prestashopheaven/build-tools": "1.0.0"
-                }
-            }
-        },
-        {
-            "type": "path",
-            "url": "../../libraries/mono-runtime-backoffice/packages/*",
-            "options": {
-                "symlink": true,
-                "versions": {
-                    "prestashopheaven/runtime-admin-assets": "1.0.0"
-                }
-            }
-        },
-        {
-            "type": "path",
-            "url": "../../libraries/mono-runtime-core/packages/*",
-            "options": {
-                "symlink": true,
-                "versions": {
-                    "prestashopheaven/runtime-cqrs": "1.0.0",
-                    "prestashopheaven/runtime-kit": "1.0.0",
-                    "prestashopheaven/runtime-multistore": "1.0.0",
-                    "prestashopheaven/runtime-shared-kernel": "1.0.0"
-                }
-            }
-        },
-        {
-            "type": "path",
-            "url": "../../libraries/mono-runtime-support/packages/*",
-            "options": {
-                "symlink": true,
-                "versions": {
-                    "prestashopheaven/runtime-clock": "1.0.0"
-                }
-            }
-        },
-        {
-            "type": "path",
-            "url": "../../libraries/*",
-            "options": {
-                "symlink": true
-            }
         }
     ],
     "require": {
