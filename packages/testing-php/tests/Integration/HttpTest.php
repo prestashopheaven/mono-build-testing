@@ -49,7 +49,8 @@ final class HttpTest extends TestCase
 
         self::assertContains($page['status'], [301, 302]);
         self::assertStringStartsWith('http', Http::location($page));
-        self::assertStringContainsString('AdminLogin', Http::location($page));
+        // PrestaShop 9 has a Symfony login page (/login), PrestaShop 8 the legacy controller AdminLogin.
+        self::assertStringContainsString(version_compare(_PS_VERSION_, '9.0.0', '>=') ? '/login' : 'AdminLogin', Http::location($page));
     }
 
     public function testOneSessionPerRun(): void
@@ -85,7 +86,10 @@ final class HttpTest extends TestCase
         $page = Http::moduleConfigurationPage('s-' . $shop);
         $form = Http::symfonyForm($page['body'], $page['url']);
         self::assertIsArray($form);
-        $greeting = $this->field($form['fields'], 'greeting');
+        // Without an own value the field is disabled in a shop context (a browser leaves it out, and so does
+        // symfonyForm()); ticking the checkbox enables it, so the name comes from the page.
+        self::assertSame(1, preg_match('/name="([^"]*\[greeting\])"/', $page['body'], $match), 'The shop context shows the field.');
+        $greeting = $match[1];
         $checkbox = (string) preg_replace('/\[greeting\]$/', '[multistore_greeting]', $greeting);
         self::assertStringContainsString('name="' . $checkbox . '"', $page['body'], 'The shop context shows the multistore checkbox.');
 

@@ -40,14 +40,25 @@ final class OrderStatus
     {
         return self::asEmployee(static function (\Employee $employee) use ($orderId, $stateId, $useExistingPayment, $addHistory): \OrderHistory {
             self::clearCache();
-            $history = new \OrderHistory();
-            $history->id_order = $orderId;
-            $history->id_employee = (int) $employee->id;
-            $history->changeIdOrderState($stateId, $orderId, $useExistingPayment);
-            if ($addHistory && !$history->add()) {
-                throw new \RuntimeException(sprintf('PrestaShop did not save the status %d of order %d.', $stateId, $orderId));
+            // The order page has a currency in the context; a CLI test has none, and PrestaShop then fails on the
+            // computing precision (Context::getComputingPrecision(), from Order::getTotalPaid()).
+            $context = \Context::getContext();
+            $previousCurrency = $context->currency;
+            if (!$previousCurrency instanceof \Currency || !\Validate::isLoadedObject($previousCurrency)) {
+                $context->currency = new \Currency((int) (new \Order($orderId))->id_currency);
             }
-            self::clearCache();
+            try {
+                $history = new \OrderHistory();
+                $history->id_order = $orderId;
+                $history->id_employee = (int) $employee->id;
+                $history->changeIdOrderState($stateId, $orderId, $useExistingPayment);
+                if ($addHistory && !$history->add()) {
+                    throw new \RuntimeException(sprintf('PrestaShop did not save the status %d of order %d.', $stateId, $orderId));
+                }
+            } finally {
+                $context->currency = $previousCurrency;
+                self::clearCache();
+            }
 
             return $history;
         }, $employeeId);
