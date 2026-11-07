@@ -1,0 +1,14 @@
+heavenmonotesting_configuration:
+  path: /heavenmonotesting/configuration
+  methods: [GET]
+  defaults:
+    _controller: 'PrestaShopHeaven\MonoTesting\Fixture\Controller\Admin\ConfigurationController::indexAction'
+    _legacy_controller: 'AdminHeavenmonotestingConfiguration'
+    _legacy_link: 'AdminHeavenmonotestingConfiguration'
+
+heavenmonotesting_configuration_save:
+  path: /heavenmonotesting/configuration
+  methods: [POST, PATCH] # multistore: the form sends PATCH (hidden _method field)
+  defaults:
+    _controller: 'PrestaShopHeaven\MonoTesting\Fixture\Controller\Admin\ConfigurationController::saveAction'
+    _legacy_controller: 'AdminHeavenmonotestingConfiguration'

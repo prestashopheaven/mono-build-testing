@@ -1,0 +1,17 @@
+{
+  "name": "mono-build-testing",
+  "private": true,
+  "description": "The JavaScript tests of prestashopheaven/build-testing-js (CI job node of mono-ci.yml). Dev only: modules get the files through Composer.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "test": "vitest run --config packages/testing-js/tests/js/vitest.config.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "29.1.1",
+    "vitest": "5.0.3"
+  }
+}

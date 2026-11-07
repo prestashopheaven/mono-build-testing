@@ -1,0 +1,105 @@
+{
+    "name": "prestashopheaven/heavenmonotesting",
+    "description": "Fixture module of mono-build-testing: runs the integration tests of build-testing-php in real shops, through the helpers themselves. Never released.",
+    "type": "prestashop-module",
+    "license": "MIT",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../../../../libraries/mono-build-standards/packages/*",
+            "options": {
+                "symlink": true,
+                "versions": {
+                    "prestashopheaven/build-coding-standard": "1.0.0",
+                    "prestashopheaven/build-typescript": "1.0.0"
+                }
+            }
+        },
+        {
+            "type": "path",
+            "url": "../../../../../libraries/mono-build-tools/packages/*",
+            "options": {
+                "symlink": true,
+                "versions": {
+                    "prestashopheaven/build-tools": "1.0.0"
+                }
+            }
+        },
+        {
+            "type": "path",
+            "url": "../../../../../libraries/mono-runtime-core/packages/*",
+            "options": {
+                "symlink": false,
+                "versions": {
+                    "prestashopheaven/runtime-cqrs": "1.0.0",
+                    "prestashopheaven/runtime-kit": "1.0.0",
+                    "prestashopheaven/runtime-multistore": "1.0.0",
+                    "prestashopheaven/runtime-shared-kernel": "1.0.0"
+                }
+            }
+        },
+        {
+            "type": "path",
+            "url": "../../../../../libraries/*",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../../../packages/*",
+            "options": {
+                "symlink": false,
+                "versions": {
+                    "prestashopheaven/build-testing-js": "1.0.0",
+                    "prestashopheaven/build-testing-php": "1.0.0"
+                }
+            }
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "prestashopheaven/runtime-cqrs": "^1.0",
+        "prestashopheaven/runtime-kit": "^1.0"
+    },
+    "require-dev": {
+        "prestashopheaven/build-testing-php": "1.0.0",
+        "prestashopheaven/build-tools": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PrestaShopHeaven\\MonoTesting\\Fixture\\": "src/"
+        },
+        "classmap": [
+            "heavenmonotesting.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PrestaShopHeaven\\MonoTesting\\Fixture\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "8.1.0"
+        },
+        "sort-packages": true,
+        "prepend-autoloader": false
+    },
+    "extra": {
+        "prestashopheaven": {
+            "scope-prefix": "PrestaShopHeaven\\MonoTesting\\Fixture\\Vendor",
+            "scope": [
+                "PrestaShopHeaven\\Runtime"
+            ]
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "ps-module mono fixture-tests"
+        ],
+        "post-update-cmd": [
+            "ps-module mono fixture-tests"
+        ]
+    }
+}

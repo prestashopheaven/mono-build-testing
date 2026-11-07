@@ -1,0 +1,14 @@
+heavengood_configuration:
+  path: /heavengood/configuration
+  methods: [GET]
+  defaults:
+    _controller: 'Heavengood\Controller\ConfigurationController::indexAction'
+    _legacy_controller: 'AdminHeavengoodConfiguration'
+    _legacy_link: 'AdminHeavengoodConfiguration'
+
+heavengood_order_action:
+  path: /heavengood/orders/{orderId}/action
+  methods: [POST]
+  defaults:
+    _controller: 'Heavengood\Controller\OrderController::action'
+    _legacy_controller: AdminOrders

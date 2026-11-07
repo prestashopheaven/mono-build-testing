@@ -1,0 +1,4 @@
+heavenbroken_other:
+  path: /heavenbroken/other
+  defaults:
+    _legacy_controller: 'AdminHeavenbrokenLost'

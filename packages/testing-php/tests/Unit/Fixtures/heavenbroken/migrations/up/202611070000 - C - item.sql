@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS `{_DB_PREFIX_}heavenbroken_item` (`id_item` INT) ENGINE=_MYSQL_ENGINE_;

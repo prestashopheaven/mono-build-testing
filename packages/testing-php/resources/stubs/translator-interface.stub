@@ -1,0 +1,24 @@
+<?php
+/**
+ * Stand-in for Symfony\Contracts\Translation\TranslatorInterface in unit tests: PrestaShop ships the real one, the
+ * module's dev dependencies do not. UnitBootstrap::boot() (package prestashopheaven/build-testing-php) loads it only
+ * when the real interface is missing; the .stub extension keeps it out of PHPStan and the conventions check (it is no
+ * module class).
+ */
+
+namespace Symfony\Contracts\Translation;
+
+interface TranslatorInterface
+{
+    /**
+     * Translates a message (the signature of symfony/translation-contracts 2 and 3).
+     *
+     * @param array<string, mixed> $parameters
+     */
+    public function trans(string $id, array $parameters = [], ?string $domain = null, ?string $locale = null): string;
+
+    /**
+     * The locale of the translator.
+     */
+    public function getLocale(): string;
+}

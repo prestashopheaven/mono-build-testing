@@ -1,0 +1,36 @@
+# Back office: the settings page of the Configure button, its form and the public form handler that FormFactories
+# (build-testing-php) takes the form factory from.
+services:
+  _defaults:
+    public: true
+
+  PrestaShopHeaven\MonoTesting\Fixture\Form\ConfigurationType:
+    class: PrestaShopHeaven\MonoTesting\Fixture\Form\ConfigurationType
+    parent: 'form.type.translatable.aware'
+    public: true
+    tags:
+      - { name: form.type }
+
+  PrestaShopHeaven\MonoTesting\Fixture\Form\ConfigurationFormDataProvider:
+    arguments:
+      - '@prestashop.adapter.legacy.configuration'
+      - '@prestashop.adapter.shop.context'
+      - '@prestashop.adapter.multistore_feature'
+
+  prestashopheaven.heavenmonotesting.form.configuration_handler:
+    class: PrestaShop\PrestaShop\Core\Form\Handler
+    arguments:
+      - '@form.factory'
+      - '@prestashop.core.hook.dispatcher'
+      - '@PrestaShopHeaven\MonoTesting\Fixture\Form\ConfigurationFormDataProvider'
+      - 'PrestaShopHeaven\MonoTesting\Fixture\Form\ConfigurationType'
+      - 'HeavenmonotestingConfiguration'
+
+  PrestaShopHeaven\MonoTesting\Fixture\Controller\Admin\ConfigurationController:
+    arguments:
+      - '@prestashopheaven.heavenmonotesting.form.configuration_handler'
+    tags:
+      - { name: controller.service_arguments }
+
+imports:
+  - { resource: ../common.yml }

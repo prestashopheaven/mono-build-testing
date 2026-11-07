@@ -1,0 +1,114 @@
+{
+    "name": "prestashopheaven/mono-build-testing",
+    "description": "Shared test helpers of the PrestaHaven modules: PHP integration helpers for real shops (contexts, containers, HTTP, mail, forms, order status), base test cases for the tests every module repeats, and the JavaScript test doubles for Vitest.",
+    "version": "1.0.0",
+    "type": "project",
+    "license": "MIT",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "packages/*",
+            "options": {
+                "symlink": true,
+                "versions": {
+                    "prestashopheaven/build-testing-js": "1.0.0",
+                    "prestashopheaven/build-testing-php": "1.0.0"
+                }
+            }
+        },
+        {
+            "type": "path",
+            "url": "../../libraries/mono-build-standards/packages/*",
+            "options": {
+                "symlink": true,
+                "versions": {
+                    "prestashopheaven/build-coding-standard": "1.0.0",
+                    "prestashopheaven/build-typescript": "1.0.0"
+                }
+            }
+        },
+        {
+            "type": "path",
+            "url": "../../libraries/mono-build-tools/packages/*",
+            "options": {
+                "symlink": true,
+                "versions": {
+                    "prestashopheaven/build-tools": "1.0.0"
+                }
+            }
+        },
+        {
+            "type": "path",
+            "url": "../../libraries/mono-runtime-backoffice/packages/*",
+            "options": {
+                "symlink": true,
+                "versions": {
+                    "prestashopheaven/runtime-admin-assets": "1.0.0"
+                }
+            }
+        },
+        {
+            "type": "path",
+            "url": "../../libraries/mono-runtime-core/packages/*",
+            "options": {
+                "symlink": true,
+                "versions": {
+                    "prestashopheaven/runtime-cqrs": "1.0.0",
+                    "prestashopheaven/runtime-kit": "1.0.0",
+                    "prestashopheaven/runtime-multistore": "1.0.0",
+                    "prestashopheaven/runtime-shared-kernel": "1.0.0"
+                }
+            }
+        },
+        {
+            "type": "path",
+            "url": "../../libraries/mono-runtime-support/packages/*",
+            "options": {
+                "symlink": true,
+                "versions": {
+                    "prestashopheaven/runtime-clock": "1.0.0"
+                }
+            }
+        },
+        {
+            "type": "path",
+            "url": "../../libraries/*",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "prestashopheaven/build-testing-js": "*",
+        "prestashopheaven/build-testing-php": "*"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.2",
+        "phpcompatibility/php-compatibility": "^10.0@alpha",
+        "prestashopheaven/build-tools": "^1.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "platform": {
+            "php": "8.1.0"
+        },
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "extra": {
+        "prestashopheaven": {
+            "monorepo": {
+                "kind": "build",
+                "category": "testing"
+            }
+        }
+    },
+    "scripts": {
+        "check": "ps-module mono check",
+        "phpstan": "@php tests/phpstan/run.php"
+    }
+}

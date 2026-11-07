@@ -1,0 +1,7 @@
+{
+    "module_name": "heavenmonotesting",
+    "display_name": "Testing packages fixture",
+    "version": "1.0.0",
+    "distribution": "addons",
+    "fixture": "Test module of mono-build-testing (docs/packages): runs the integration tests of build-testing-php in real shops, through the helpers themselves. Never released."
+}

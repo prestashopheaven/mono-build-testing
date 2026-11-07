@@ -1,0 +1,16 @@
+# Services of the fixture for every container (back office, front office, webservice, console).
+services:
+  _defaults:
+    public: true
+
+  # The bus of runtime-cqrs under the module's own id, never under the shared class name.
+  prestashopheaven.heavenmonotesting.command_bus:
+    class: PrestaShopHeaven\Runtime\Cqrs\ModuleCommandBus
+    public: true
+    arguments:
+      $handlers: !tagged_locator { tag: 'prestashopheaven.heavenmonotesting.handler', index_by: 'command' }
+      $handlerTag: 'prestashopheaven.heavenmonotesting.handler'
+
+  PrestaShopHeaven\MonoTesting\Fixture\Application\Greeting\Query\GetGreeting\GetGreetingHandler:
+    tags:
+      - { name: 'prestashopheaven.heavenmonotesting.handler', command: 'PrestaShopHeaven\MonoTesting\Fixture\Application\Greeting\Query\GetGreeting\GetGreetingQuery' }

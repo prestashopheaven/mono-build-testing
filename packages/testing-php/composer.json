@@ -1,0 +1,80 @@
+{
+    "name": "prestashopheaven/build-testing-php",
+    "description": "PHP test helpers of the PrestaHaven modules: integration helpers for real shops (shop and language contexts, containers, HTTP requests to the shop, a fake SMTP server, a Mailpit client, back-office form factories, order status changes with an employee), the unit and integration bootstraps, and base test cases for installation, command bus and module definition.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "George van Engers",
+            "email": "vanengers@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "ext-curl": "*",
+        "ext-dom": "*",
+        "ext-iconv": "*",
+        "ext-libxml": "*",
+        "phpunit/phpunit": "^10.5",
+        "prestashopheaven/runtime-cqrs": "^1.0",
+        "prestashopheaven/runtime-kit": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PrestaShopHeaven\\Build\\TestingPhp\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PrestaShopHeaven\\Build\\TestingPhp\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.x-dev"
+        },
+        "prestashopheaven": {
+            "kind": "build",
+            "use-when": "A module's PHPUnit tests: the bootstraps of tests/Unit and tests/Integration, integration tests that need a shop context, a container, back-office pages, forms, mails or order status changes, and the shared tests every module repeats (installation, command bus, module definition).",
+            "keywords": [
+                "phpunit",
+                "integration test",
+                "unit test",
+                "bootstrap",
+                "shop context",
+                "multistore",
+                "container",
+                "kernel",
+                "http",
+                "back office login",
+                "form",
+                "smtp",
+                "mail",
+                "mailpit",
+                "order status",
+                "employee",
+                "installation test",
+                "command bus test",
+                "module definition test"
+            ],
+            "phpstan-paths": [
+                "src",
+                "tests/Unit",
+                "tests/Integration"
+            ],
+            "integration-tested": [
+                "src/Containers.php",
+                "src/FormFactories.php",
+                "src/Http.php",
+                "src/IntegrationBootstrap.php",
+                "src/Mail/FakeSmtpServer.php",
+                "src/Mail/MailSettings.php",
+                "src/OrderStatus.php",
+                "src/RecordingFrontController.php",
+                "src/ShopContexts.php",
+                "src/TestCase/CommandBusTestCase.php",
+                "src/TestCase/InstallationTestCase.php"
+            ]
+        }
+    }
+}

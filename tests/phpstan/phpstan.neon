@@ -1,0 +1,10 @@
+# PHPStan of this build monorepo against PrestaShop 8.1.0 and 9.2.0 (composer phpstan). ps-module mono check runs
+# PHPStan only for runtime monorepos, but build-testing-php is PrestaShop code: it gets the PrestaShop extension here.
+includes:
+    - %currentWorkingDirectory%/vendor/prestashop/php-dev-tools/phpstan/ps-module-extension.neon
+
+parameters:
+    level: 6
+    phpVersion: 80100
+    reportUnmatchedIgnoredErrors: false
+    tmpDir: %currentWorkingDirectory%/.cache/phpstan
