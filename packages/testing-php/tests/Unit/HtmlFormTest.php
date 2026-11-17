@@ -130,6 +130,16 @@ final class HtmlFormTest extends TestCase
         ], HtmlForm::formFields($html, self::PAGE, 'product'));
     }
 
+    public function testAMultipleSelectWithoutSelectionSendsNothing(): void
+    {
+        $html = '<form name="form" action="/save">'
+            . '<select name="form[excluded][]" multiple><option value="3">Lamps</option><option value="4">Tools</option></select>'
+            . '<select name="form[hour]"><option value="1">01:00</option><option value="6">06:00</option></select>'
+            . '</form>';
+
+        self::assertSame([['form[hour]', '1']], HtmlForm::formFields($html, self::PAGE, 'form')['fields'] ?? null, 'Like a browser: a single select sends its first option.');
+    }
+
     public function testFormFieldsOfAFormWithoutActionOrAnUnknownForm(): void
     {
         $result = HtmlForm::formFields('<form name="f"><input name="a" value="1"></form>', self::PAGE, 'f');

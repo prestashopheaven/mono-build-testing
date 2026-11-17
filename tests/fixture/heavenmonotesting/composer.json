@@ -10,8 +10,8 @@
             "options": {
                 "symlink": false,
                 "versions": {
-                    "prestashopheaven/build-testing-js": "1.0.0",
-                    "prestashopheaven/build-testing-php": "1.0.0"
+                    "prestashopheaven/build-testing-js": "1.0.1",
+                    "prestashopheaven/build-testing-php": "1.0.1"
                 }
             }
         }

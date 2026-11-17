@@ -2,6 +2,11 @@
 
 All packages of this monorepo share one version. Per package details: its own `CHANGELOG.md`.
 
+## 1.0.1
+
+- `build-testing-php` 1.0.1: `HtmlForm::formFields()` sends nothing for a `<select multiple>` without a selected
+  option, like a browser (it sent the first option). A single select without a selection still sends its first option.
+
 ## 1.0.0
 
 - Monorepo created (2026-11-07), milestone M4 of the package collection (`docs/packages/STATUS.md`).

@@ -2,6 +2,12 @@
 
 The version is the one of the monorepo `mono-build-testing`.
 
+## 1.0.1
+
+- `HtmlForm::formFields()`: a `<select multiple>` without a selected option sends nothing, like a browser; it sent its
+  first option, so a test that submitted a settings page with an empty multiple select saved that option (found with
+  `heavencategorysuggestions`, field "Never suggest these categories").
+
 ## 1.0.0
 
 First version, merged from the `tests/` folders of the 17 modules in `modules/` and `heavenupdater` (scan of

@@ -159,7 +159,10 @@ final class HtmlForm
                 $fields[] = [$name, $control->textContent];
             } elseif ($control->tagName === 'select') {
                 $selected = $xpath->query('.//option[@selected]', $control);
-                $options = $selected !== false && $selected->length > 0 ? $selected : $xpath->query('.//option[1]', $control);
+                // Nothing selected: a single select sends its first option, a multiple select sends nothing.
+                $options = $selected !== false && $selected->length > 0
+                    ? $selected
+                    : ($control->hasAttribute('multiple') ? [] : $xpath->query('.//option[1]', $control));
                 foreach ($options ?: [] as $option) {
                     if ($option instanceof \DOMElement) {
                         $fields[] = [$name, $option->hasAttribute('value') ? $option->getAttribute('value') : $option->textContent];

@@ -1,7 +1,7 @@
 {
     "name": "prestashopheaven/mono-build-testing",
     "description": "Shared test helpers of the PrestaHaven modules: PHP integration helpers for real shops (contexts, containers, HTTP, mail, forms, order status), base test cases for the tests every module repeats, and the JavaScript test doubles for Vitest.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "type": "project",
     "license": "MIT",
     "repositories": [
@@ -11,8 +11,8 @@
             "options": {
                 "symlink": true,
                 "versions": {
-                    "prestashopheaven/build-testing-js": "1.0.0",
-                    "prestashopheaven/build-testing-php": "1.0.0"
+                    "prestashopheaven/build-testing-js": "1.0.1",
+                    "prestashopheaven/build-testing-php": "1.0.1"
                 }
             }
         }
