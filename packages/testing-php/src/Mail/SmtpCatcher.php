@@ -60,12 +60,12 @@ final class SmtpCatcher
         $ready = is_resource($process) ? (string) fgets($pipes[1]) : '';
         if (!str_starts_with($ready, 'READY ')) {
             // Only read stderr after a failure: stream_get_contents() blocks while the server runs.
-            $error = is_resource($process) ? trim((string) stream_get_contents($pipes[2])) : 'proc_open() failed';
+            $error = is_resource($process) ? trim((string) stream_get_contents($pipes[2]), " \n\r\t\v\0") : 'proc_open() failed';
             $this->stop();
 
             throw new \RuntimeException('Fake SMTP server did not start: ' . $error);
         }
-        [$host, $port] = explode(':', trim(substr($ready, 6)));
+        [$host, $port] = explode(':', trim(substr($ready, 6), " \n\r\t\v\0"));
         $this->host = $host;
         $this->port = (int) $port;
     }

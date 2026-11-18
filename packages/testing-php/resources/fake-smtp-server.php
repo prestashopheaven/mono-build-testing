@@ -50,7 +50,7 @@ while ($connection = stream_socket_accept($server, -1)) {
             }
             continue;
         }
-        $verb = strtoupper(substr(trim($line), 0, 4));
+        $verb = strtoupper(substr(trim($line, " \n\r\t\v\0"), 0, 4));
         if ($verb === 'EHLO') {
             $reply('250-localhost');
             $reply('250 8BITMIME');

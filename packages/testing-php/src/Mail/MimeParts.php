@@ -41,7 +41,7 @@ final class MimeParts
             }
             $encoding = preg_match('/^Content-Transfer-Encoding:\s*(\S+)/im', $head, $e) === 1 ? strtolower($e[1]) : '7bit';
             $body = $split[1];
-            $found[rawurldecode(trim($name[1]))] = match ($encoding) {
+            $found[rawurldecode(trim($name[1], " \n\r\t\v\0"))] = match ($encoding) {
                 'base64' => (string) base64_decode((string) preg_replace('/\s+/', '', $body)),
                 'quoted-printable' => quoted_printable_decode($body),
                 default => $body,
@@ -61,7 +61,7 @@ final class MimeParts
             return null;
         }
 
-        return iconv_mime_decode(trim($m[1]), ICONV_MIME_DECODE_CONTINUE_ON_ERROR, 'UTF-8') ?: trim($m[1]);
+        return iconv_mime_decode(trim($m[1], " \n\r\t\v\0"), ICONV_MIME_DECODE_CONTINUE_ON_ERROR, 'UTF-8') ?: trim($m[1], " \n\r\t\v\0");
     }
 
     /**

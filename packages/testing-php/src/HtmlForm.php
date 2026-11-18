@@ -108,7 +108,7 @@ final class HtmlForm
                     $fields[$name] = html_entity_decode(($o[1] ?? '') !== '' ? $o[1] : ($o[2] ?? ''));
                     continue;
                 }
-                $fields[$name] = $tag[1] === 'textarea' ? html_entity_decode(trim($tag[3])) : html_entity_decode($v[1] ?? '');
+                $fields[$name] = $tag[1] === 'textarea' ? html_entity_decode(trim($tag[3], " \n\r\t\v\0")) : html_entity_decode($v[1] ?? '');
             }
 
             return ['action' => $target, 'fields' => $fields];
