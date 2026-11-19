@@ -2,6 +2,11 @@
 
 The version is the one of the monorepo `mono-build-testing`.
 
+## 1.1.0
+
+- `PublicHost`: test URLs on a public example host (`url()`, `urls()`) and `isTestHost()`, for sending and queue
+  tests that would otherwise only see the skipped localhost URLs of the test shop (TST-15, heavenbingindexnow 1.0.0).
+
 ## 1.0.1
 
 - `HtmlForm::formFields()`: a `<select multiple>` without a selected option sends nothing, like a browser; it sent its

@@ -2,6 +2,10 @@
 
 All packages of this monorepo share one version. Per package details: its own `CHANGELOG.md`.
 
+## 1.1.0
+
+- `build-testing-php` 1.1.0: `PublicHost`, test URLs on a public example host for sending and queue tests (TST-15).
+
 ## 1.0.1
 
 - `build-testing-php` 1.0.1: `HtmlForm::formFields()` sends nothing for a `<select multiple>` without a selected

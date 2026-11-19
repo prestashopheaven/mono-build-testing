@@ -99,6 +99,7 @@ so moving is a change of `use` lines (see the CHANGELOG for the few renames).
 | `HtmlForm` | The parsing behind `Http` (no PrestaShop needed) |
 | `FormFactories` | The form factory of the back office with every PrestaShop extension, from the module's form handler `handlerId()` = `prestashopheaven.<module>.form.configuration_handler`; `backOffice()`, `fromHandler()`, `reset()` |
 | `OrderStatus` | `change($orderId, $stateId)` like the order page, with an employee in the context (PS 8.1 writes the stock movement with it), `asEmployee($callable)`, `employee()`, `current($orderId)`, `clearCache()` |
+| `PublicHost` | `url($shopUrl)` / `urls([...])` put test URLs on the public example host www.example.org, `isTestHost($host)`: the test shops run on localhost, which a module that sends URLs out rightly skips, so a sending or queue test uses public URLs and asserts what is sent, or keeps the shop host and asserts the skip (TST-15) |
 | `Mail\FakeSmtpServer` | `start()`, `mails()`, `rawMails()`, `attachments($raw)`, `configureUnreachable()`, `stop()`: PrestaShop's `Mail::send()` to a fake SMTP server |
 | `Mail\MailpitClient` | Mailpit's API v1: `messages()`, `search('to:x')`, `waitFor()`, `message()`, `attachments()`, `raw()`, `part()`, `deleteAll()`, `deleteSearch()`, `isReachable()`; address from `MAILPIT_URL` (default `http://mailpit:8025`) |
 | `Mail\MailSettings` | Points the shop's mail settings at a server and restores them: `pointAt($host, $port)`, `restore()` (Mailpit: `pointAt($client->smtpHost(), $client->smtpPort())`) |
